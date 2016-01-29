@@ -51,10 +51,10 @@ public class BoardManager : MonoBehaviour
 		gridPositions.Clear ();
 		
 		//Loop through x axis (columns).
-		for(float x = offsetX - 1 - 1; x < columns + 1; x += offsetX)
+		for(float x = -0.9884f; x < columns + 1; x += offsetX)
 		{
 			//Within each column, loop through y axis (rows).
-			for(float y = offsetY - 1 - 1; y < rows + 1; y += offsetY)
+			for(float y = -1.7126f; y < rows + 1; y += offsetY)
 			{
 				//At each index add a new Vector3 to our list with the x and y coordinates of that position.
 				gridPositions.Add (new Vector3(x, y, 0f));
@@ -70,10 +70,10 @@ public class BoardManager : MonoBehaviour
 		boardHolder = new GameObject ("Board").transform;
 		
 		//Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
-		for(float x = -1; x < columns + 1; x += offsetX)
+		for(float x = -0.9884f; x < columns + 1; x += offsetX)
 		{
 			//Loop along y axis, starting from -1 to place floor or outerwall tiles.
-			for(float y = -1; y < rows + 1; y += offsetY)
+			for(float y = -1.7126f; y < rows + 1; y += offsetY)
 			{
 				//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
 				GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
@@ -138,11 +138,11 @@ public class BoardManager : MonoBehaviour
 	Vector3 RandomExitPosition() 
 	{
 		//Declare an integer randomIndex, set it's value to a random number between 0 and the count of items in our List gridPositions.
-		//int randomIndex = Random.Range (gridPositions.Count - 3, gridPositions.Count);
-		int theX = Random.Range (-1, 6);
-		int theY = Random.Range (5, 8);
+		int randomIndex = Random.Range (gridPositions.Count - 3, gridPositions.Count);
+		//int theX = Random.Range (-1, 6);
+		//int theY = Random.Range (5, 8);
 
-		int randomIndex = gridPositions.FindIndex (a => a.x == theX && a.y == theY);
+		//int randomIndex = gridPositions.FindIndex (a => a.x == theX && a.y == theY);
 		
 		//Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
 		Vector3 randomPosition = gridPositions[randomIndex];
@@ -204,18 +204,31 @@ public class BoardManager : MonoBehaviour
 
 			if(index != -1)
 			{
+				float theX = gridPositions[index].x;
+				float theY = gridPositions[index].y;
+				Instantiate(debugTile, new Vector3(theX, theY), Quaternion.identity);
+
 				gridPositions.RemoveAt(index);
-				//Instantiate(debugTile, new Vector3((int)x, (int)y), Quaternion.identity);
 			}
 
 			int safeIndex = getIndexAtGrid((int)x, (int)y - 1);
 
 			if(safeIndex != -1)
 			{
+				float theX = gridPositions[safeIndex].x;
+				float theY = gridPositions[safeIndex].y;
+				Instantiate(debugTile, new Vector3(theX, theY), Quaternion.identity);
+
 				gridPositions.RemoveAt(safeIndex);
-				//Instantiate(debugTile, new Vector3((int)x, (int)y - 1), Quaternion.identity);
 			}
 		}
+	}
+
+	bool atRange(float a, float b)
+	{
+		const float range = 0.00000000000001f;
+
+		return (b >= a - range) || (b <= a + range) || a == b;
 	}
 
 	int getIndexAtGrid(float x, float y) 
@@ -228,7 +241,7 @@ public class BoardManager : MonoBehaviour
 //		if (x == (offsetX - 1 - 1) && y == (offsetY - 1 - 1))
 //			return -1;
 
-		return gridPositions.FindIndex (a => a.x == x && a.y == y);
+		return gridPositions.FindIndex (a => atRange(a.x, x) && atRange(a.y, y));
 	}
 	
 	
@@ -254,12 +267,12 @@ public class BoardManager : MonoBehaviour
 
 		LayoutExitAtRandom (exit, 1, 1);
 
-		MakeSureThereIsAtLeastAWay ();
+		//MakeSureThereIsAtLeastAWay ();
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
 		
 		//Instantiate the exit tile in the upper right hand corner of our game board
-		Instantiate (player, new Vector3 (offsetX - 1 - 1, offsetY - 1 - 1), Quaternion.identity);
+		Instantiate (player, new Vector3 (-0.9884f, -1.7126f), Quaternion.identity);
 	}
 }
