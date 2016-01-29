@@ -26,6 +26,7 @@ public class BoardManager : MonoBehaviour
 	public int rows = 8;                                            //Number of rows in our game board.
 	public float offsetX = 0.9f;
 	public float offsetY = 0.9f;
+	public int dangerTileCount = 3;
 	public Count wallCount = new Count (5, 9);                      //Lower and upper limit for our random number of walls per level.
 	public Count foodCount = new Count (1, 5);                      //Lower and upper limit for our random number of food items per level.
 	public GameObject exit;                                         //Prefab to spawn for exit.
@@ -38,6 +39,9 @@ public class BoardManager : MonoBehaviour
 	
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 	private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
+
+	private float exitX, exitY;
+	public GameObject debugTile;
 	
 	
 	//Clears our list gridPositions and prepares it to generate a new board.
@@ -47,10 +51,10 @@ public class BoardManager : MonoBehaviour
 		gridPositions.Clear ();
 		
 		//Loop through x axis (columns).
-		for(float x = offsetX - 1; x <= columns - 1; x += offsetX)
+		for(float x = offsetX - 1 - 1; x < columns + 1; x += offsetX)
 		{
 			//Within each column, loop through y axis (rows).
-			for(float y = offsetY - 1; y <= rows - 1; y += offsetY)
+			for(float y = offsetY - 1 - 1; y < rows + 1; y += offsetY)
 			{
 				//At each index add a new Vector3 to our list with the x and y coordinates of that position.
 				gridPositions.Add (new Vector3(x, y, 0f));
@@ -80,7 +84,7 @@ public class BoardManager : MonoBehaviour
 				if(x == -1 || x >= columns || y == -1 || y >= rows)
 				{
 					//Debug.Log(y);
-					toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
+					//toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
 				}
 				
 				//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
@@ -133,7 +137,24 @@ public class BoardManager : MonoBehaviour
 
 	Vector3 RandomExitPosition() 
 	{
-		return Vector3.zero;
+		//Declare an integer randomIndex, set it's value to a random number between 0 and the count of items in our List gridPositions.
+		//int randomIndex = Random.Range (gridPositions.Count - 3, gridPositions.Count);
+		int theX = Random.Range (-1, 6);
+		int theY = Random.Range (5, 8);
+
+		int randomIndex = gridPositions.FindIndex (a => a.x == theX && a.y == theY);
+		
+		//Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
+		Vector3 randomPosition = gridPositions[randomIndex];
+
+		exitX = randomPosition.x;
+		exitY = randomPosition.y;
+		
+		//Remove the entry at randomIndex from the list so that it can't be re-used.
+		gridPositions.RemoveAt (randomIndex);
+		
+		//Return the randomly selected Vector3 position.
+		return randomPosition;
 	}
 
 	void LayoutExitAtRandom (GameObject tileArray, int minimum, int maximum)
@@ -154,6 +175,61 @@ public class BoardManager : MonoBehaviour
 			Instantiate(tileArray, randomPosition, Quaternion.identity);
 		}
 	}
+
+	void MakeSureThereIsAtLeastAWay() 
+	{
+		float step;
+		float dx, dy, x_inc, y_inc;
+		float x, y;
+
+		dx = exitX - (offsetX - 1 - 1);
+		dy = exitY - (offsetY - 1 - 1);
+		x = (offsetX - 1 - 1);
+		y = (offsetY - 1 - 1);
+		
+		if (Mathf.Abs(dx) > Mathf.Abs(dy)) {
+			step = (int) Mathf.Round(Math.Abs(dx));
+		} else {
+			step = (int) Mathf.Round(Math.Abs(dy));
+		}
+
+		x_inc = dx / step;
+		y_inc = dy / step;
+		
+		for (int i = 1; i <= step; i++) {
+			x += x_inc;
+			y += y_inc;
+
+			int index = getIndexAtGrid((int)x, (int)y);
+
+			if(index != -1)
+			{
+				gridPositions.RemoveAt(index);
+				//Instantiate(debugTile, new Vector3((int)x, (int)y), Quaternion.identity);
+			}
+
+			int safeIndex = getIndexAtGrid((int)x, (int)y - 1);
+
+			if(safeIndex != -1)
+			{
+				gridPositions.RemoveAt(safeIndex);
+				//Instantiate(debugTile, new Vector3((int)x, (int)y - 1), Quaternion.identity);
+			}
+		}
+	}
+
+	int getIndexAtGrid(float x, float y) 
+	{
+		//Vector3 search = new Vector3 (x, y);
+
+		if (x == exitX && y == exitY)
+			return -1;
+
+//		if (x == (offsetX - 1 - 1) && y == (offsetY - 1 - 1))
+//			return -1;
+
+		return gridPositions.FindIndex (a => a.x == x && a.y == y);
+	}
 	
 	
 	//SetupScene initializes our level and calls the previous functions to lay out the game board
@@ -173,15 +249,17 @@ public class BoardManager : MonoBehaviour
 		//LayoutObjectAtRandom (foodTiles, foodCount.minimum, foodCount.maximum);
 		
 		//Determine number of enemies based on current level number, based on a logarithmic progression
-		int enemyCount = (int)Mathf.Log(level, 2f);
-		//int enemyCount = 48;
+		//int enemyCount = (int)Mathf.Log(level, 2f);
+		int enemyCount = dangerTileCount;
 
 		LayoutExitAtRandom (exit, 1, 1);
+
+		MakeSureThereIsAtLeastAWay ();
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
 		
 		//Instantiate the exit tile in the upper right hand corner of our game board
-		Instantiate (player, new Vector3 (offsetX - 1, offsetY - 1), Quaternion.identity);
+		Instantiate (player, new Vector3 (offsetX - 1 - 1, offsetY - 1 - 1), Quaternion.identity);
 	}
 }

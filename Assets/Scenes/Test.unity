@@ -109,7 +109,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 176265308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,8 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 5
   rows: 7
-  offsetX: .899999976
-  offsetY: .899999976
+  offsetX: 1
+  offsetY: 1
+  dangerTileCount: 13
   wallCount:
     minimum: 5
     maximum: 9
@@ -136,6 +137,7 @@ MonoBehaviour:
     minimum: 1
     maximum: 5
   exit: {fileID: 162872, guid: 6423de59b20c52645bcbef320433a653, type: 2}
+  player: {fileID: 135376, guid: cc4da6ecf17ad784db0c79181cfc579e, type: 2}
   floorTiles:
   - {fileID: 165710, guid: 63778c01f6fd2a344ba4e9a2eea42740, type: 2}
   wallTiles: []
@@ -144,6 +146,7 @@ MonoBehaviour:
   - {fileID: 125536, guid: 158ca95e08794ba4d9764f72e03b8808, type: 2}
   outerWallTiles:
   - {fileID: 191108, guid: 6710d37284a68104fa127b8e94f0cbea, type: 2}
+  debugTile: {fileID: 191108, guid: 6710d37284a68104fa127b8e94f0cbea, type: 2}
 --- !u!114 &176265311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +158,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05716c4305d924488744d73622c5c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &716958068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 716958070}
+  - 114: {fileID: 716958069}
+  m_Layer: 0
+  m_Name: Maze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &716958069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716958068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff9fbc1b8cc6464cb27c0c889feb7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killerTiles: {fileID: 125536, guid: 158ca95e08794ba4d9764f72e03b8808, type: 2}
+--- !u!4 &716958070
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716958068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1 &1487412612
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +247,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
+  m_BackGroundColor: {r: .0352941193, g: .0509803928, b: .0627451017, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
