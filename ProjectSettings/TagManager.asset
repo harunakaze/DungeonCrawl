@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FogOfWar
+  - Trap
+  - ExitDoor
+  - Symbols
   layers:
   - Default
   - TransparentFX
@@ -50,6 +54,12 @@ TagManager:
   - name: Danger
     uniqueID: 1454584005
     locked: 0
+  - name: FogOfWar
+    uniqueID: 3440647615
+    locked: 0
   - name: Player
     uniqueID: 546827847
+    locked: 0
+  - name: Symbols
+    uniqueID: 3453440775
     locked: 0
