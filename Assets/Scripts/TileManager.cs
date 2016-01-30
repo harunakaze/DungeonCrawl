@@ -188,8 +188,6 @@ public class TileManager : MonoBehaviour {
 			SetRandom ();
 		} while (!CheckDFS());
 
-
-
 		LayTile ();
 
 		SetFogOfWar ();

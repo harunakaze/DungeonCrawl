@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21256742}
   - 50: {fileID: 5067836}
   - 61: {fileID: 6194980}
+  - 114: {fileID: 11420240}
   m_Layer: 0
   m_Name: character_idle
   m_TagString: Player
@@ -58,7 +59,23 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: -.449999988}
   serializedVersion: 2
-  m_Size: {x: .5, y: .5}
+  m_Size: {x: .25, y: .25}
+--- !u!114 &11420240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e325beedd8f6c743add6c526a7c870d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileManager: {fileID: 0}
+  lastPosition: {x: 0, y: 0, z: 0}
+  deadButton: {fileID: 0}
+  victory: {fileID: 0}
+  pauser: {fileID: 0}
 --- !u!212 &21256742
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -103,6 +120,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.y
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

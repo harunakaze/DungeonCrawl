@@ -12,10 +12,16 @@ public class PlayerController : MonoBehaviour {
 	public GameObject deadButton;
 	public GameObject victory;
 
+	public Pauser pauser;
 	private bool isDead = false;
+	private Animator animator;
+
+	void Start() {
+		animator = GetComponent<Animator> ();
+	}
 
 	void Update() {
-		if (isDead) {
+		if (isDead || pauser.isPaused) {
 			return;
 		}
 
@@ -65,7 +71,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Dead() {
-		isDead = true;
 		deadButton.SetActive (true);
 	}
 
@@ -77,6 +82,8 @@ public class PlayerController : MonoBehaviour {
 		transform.position = startPosition;
 
 		isDead = false;
+
+		animator.SetBool ("IsDead", false);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -85,12 +92,25 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (other.CompareTag ("Trap")) {
-			Dead();
+			StartCoroutine(DeadStart());
 		}
 
 		if (other.CompareTag ("ExitDoor")) {
 			StartCoroutine(WinStart());
 		}
+	}
+
+	IEnumerator DeadStart() {
+		isDead = true;
+
+		Vector2 deadPos = new Vector2(transform.position.x, transform.position.y - 0.334f);
+		transform.position = deadPos;
+
+		animator.SetBool ("IsDead", true);
+
+		yield return new WaitForSeconds(2.32f);
+
+		Dead();
 	}
 
 	IEnumerator WinStart() {

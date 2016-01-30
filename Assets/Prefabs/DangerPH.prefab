@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 423340}
   - 212: {fileID: 21234062}
   - 61: {fileID: 6160090}
+  - 95: {fileID: 9581316}
+  - 114: {fileID: 11464654}
   m_Layer: 0
   m_Name: DangerPH
   m_TagString: Trap
@@ -42,6 +44,34 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .600000024, y: .600000024}
+--- !u!95 &9581316
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24d42a284539bd94fbff31869736ff6a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11464654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706d0adbb8e99cd44b01f9d93b2ff256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21234062
 SpriteRenderer:
   m_ObjectHideFlags: 1
