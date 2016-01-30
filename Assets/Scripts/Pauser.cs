@@ -4,8 +4,13 @@ using System.Collections;
 public class Pauser : MonoBehaviour {
 
 	public GameObject PauseObject;
+	public GameObject TutorialObject;
 	[HideInInspector]
 	public bool isPaused;
+
+	void Start() {
+		isPaused = true;
+	}
 
 	public void TogglePause() {
 		PauseObject.SetActive (!PauseObject.activeInHierarchy);
@@ -13,6 +18,11 @@ public class Pauser : MonoBehaviour {
 	}
 
 	public void GoToMainMenu() {
-		Debug.Log ("MENU");
+		Application.LoadLevel ("Menu");
+	}
+
+	public void ExitTutorial() {
+		isPaused = false;
+		TutorialObject.SetActive (false);
 	}
 }

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 
 	public Pauser pauser;
 	private bool isDead = false;
+	private bool isWin = false;
 	private Animator animator;
 
 	private AudioSource audioSource;
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (isDead || pauser.isPaused) {
+		if (isDead || pauser.isPaused || isWin) {
 			return;
 		}
 
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (other.CompareTag ("ExitDoor")) {
-			StartCoroutine(WinStart());
+			WinStart();
 		}
 	}
 
@@ -124,11 +125,9 @@ public class PlayerController : MonoBehaviour {
 		Dead();
 	}
 
-	IEnumerator WinStart() {
+	void WinStart() {
 		victory.SetActive (true);
 
-		yield return new WaitForSeconds(2);
-
-		Application.LoadLevel(Application.loadedLevel);
+		isWin = true;
 	}
 }
