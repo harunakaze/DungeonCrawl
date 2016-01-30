@@ -29,9 +29,6 @@ public class SymbolManager : MonoBehaviour {
 		foreach(Collider2D oldSymbol in oldSymbols)
 		{
 			if (oldSymbol != null) {
-				
-				Debug.Log (oldSymbol.tag);
-
 				if(oldSymbol.CompareTag("Symbols")) {
 					Destroy(oldSymbol.gameObject);
 				}

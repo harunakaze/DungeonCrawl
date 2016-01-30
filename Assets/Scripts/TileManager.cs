@@ -154,6 +154,9 @@ public class TileManager : MonoBehaviour {
 	}
 
 	public void SetFogOfWar() {
+		if (gelapHolder != null)
+			Destroy (gelapHolder.gameObject);
+
 		gelapHolder = new GameObject ("FogOfWarHolder").transform;
 
 		const float increment = 0.9f;

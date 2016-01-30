@@ -6,9 +6,18 @@ public class SymbolController : MonoBehaviour {
 	public GameObject symbols;
 	private GameObject instance;
 
+	public Transform playerPos;
+
+	void Start() {
+		playerPos = GameObject.FindGameObjectWithTag ("Player").transform;
+	}
+
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.CompareTag ("Player")) {
-			instance = Instantiate(symbols, new Vector2(transform.position.x, transform.position.y + 1.35f), Quaternion.identity) as GameObject;
+			if (playerPos.position.y >= 5.62f)
+				instance = Instantiate(symbols, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity) as GameObject;
+			else
+				instance = Instantiate(symbols, new Vector2(transform.position.x, transform.position.y + 1.35f), Quaternion.identity) as GameObject;
 		}
 	}
 
