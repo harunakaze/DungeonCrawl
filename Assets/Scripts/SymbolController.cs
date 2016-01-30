@@ -8,8 +8,11 @@ public class SymbolController : MonoBehaviour {
 
 	public Transform playerPos;
 
+	private AudioSource audioSource;
+
 	void Start() {
 		playerPos = GameObject.FindGameObjectWithTag ("Player").transform;
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -18,6 +21,8 @@ public class SymbolController : MonoBehaviour {
 				instance = Instantiate(symbols, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity) as GameObject;
 			else
 				instance = Instantiate(symbols, new Vector2(transform.position.x, transform.position.y + 1.35f), Quaternion.identity) as GameObject;
+
+			audioSource.Play();
 		}
 	}
 

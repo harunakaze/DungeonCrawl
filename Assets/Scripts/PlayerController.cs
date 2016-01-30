@@ -16,8 +16,11 @@ public class PlayerController : MonoBehaviour {
 	private bool isDead = false;
 	private Animator animator;
 
+	private AudioSource audioSource;
+
 	void Start() {
 		animator = GetComponent<Animator> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update() {
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour {
 					Vector2 newScale = new Vector2(-1, 1);
 					transform.localScale = newScale;
 				}
+
+				audioSource.Play();
 			}
 		}
 
@@ -50,6 +55,8 @@ public class PlayerController : MonoBehaviour {
 					Vector2 newScale = new Vector2(1, 1);
 					transform.localScale = newScale;
 				}
+
+				audioSource.Play();
 			}
 		}
 
@@ -58,6 +65,8 @@ public class PlayerController : MonoBehaviour {
 				Vector2 newPos = new Vector2(transform.position.x, transform.position.y + 0.9f);
 				lastPosition = transform.position;
 				transform.position = newPos;
+
+				audioSource.Play();
 			}
 		}
 
@@ -66,6 +75,8 @@ public class PlayerController : MonoBehaviour {
 				Vector2 newPos = new Vector2(transform.position.x, transform.position.y - 0.9f);
 				lastPosition = transform.position;
 				transform.position = newPos;
+
+				audioSource.Play();
 			}
 		}
 	}
