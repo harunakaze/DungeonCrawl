@@ -7,8 +7,8 @@ public class SoundsManager : MonoBehaviour {
 	public Animator muteAnimator;
 
 	void Start() {
-		AudioListener.pause = false;
-		muteAnimator.SetBool ("IsMute", false);
+		isMute = AudioListener.pause;
+		muteAnimator.SetBool ("IsMute", AudioListener.pause);
 	}
 	
 	public void ToggleMute() {

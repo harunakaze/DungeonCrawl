@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour {
 		} else {
 			splashObject.SetActive (false);
 		}
+
+		Time.timeScale = 1;
 	}
 
 	public void GoToGame() {

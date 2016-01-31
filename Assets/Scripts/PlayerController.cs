@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
 	public SoulsManager soulsManager;
 
 	public Pauser pauser;
+	public ExitButton exitButton;
+
 	private bool isDead = false;
 	private bool isWin = false;
 	private Animator animator;
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (isDead || pauser.isPaused || isWin) {
+		if (isDead || pauser.isPaused || isWin || pauser.isTutorial || exitButton.isDialogShown) {
 			return;
 		}
 
