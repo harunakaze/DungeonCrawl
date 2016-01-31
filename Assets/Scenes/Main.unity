@@ -317,8 +317,9 @@ MonoBehaviour:
   PauseObject: {fileID: 500931491}
   TutorialObject: {fileID: 1220308057}
   LoadingObject: {fileID: 1943379925}
-  isTutorial: 0
+  enableTutorial: 1
   isPaused: 0
+  isTutorial: 0
 --- !u!114 &48977084
 MonoBehaviour:
   m_ObjectHideFlags: 0

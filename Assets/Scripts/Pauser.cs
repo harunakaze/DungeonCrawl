@@ -6,14 +6,16 @@ public class Pauser : MonoBehaviour {
 	public GameObject PauseObject;
 	public GameObject TutorialObject;
 	public GameObject LoadingObject;
-	public bool isTutorial;
+	public bool enableTutorial = true;
 	[HideInInspector]
 	public bool isPaused;
+	[HideInInspector]
+	public bool isTutorial;
 
 	void Start() {
 		isPaused = true;
 
-		if (LevelManager.isReset) {
+		if (LevelManager.isReset || !enableTutorial) {
 			ExitTutorial();
 		}
 
