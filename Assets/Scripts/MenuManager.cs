@@ -4,6 +4,7 @@ using System.Collections;
 public class MenuManager : MonoBehaviour {
 
 	public GameObject splashObject;
+	public GameObject loadingImage;
 
 	void Start() {
 		if (!LevelManager.isReset) {
@@ -15,7 +16,8 @@ public class MenuManager : MonoBehaviour {
 
 	public void GoToGame() {
 		LevelManager.isReset = false;
-		Application.LoadLevel ("Main");
+		loadingImage.SetActive (true);
+		StartCoroutine (StartLoading ());
 	}
 
 	public void GoToCredit() {
@@ -25,5 +27,11 @@ public class MenuManager : MonoBehaviour {
 	IEnumerator HideSplash() {
 		yield return new WaitForSeconds(3);
 		splashObject.SetActive (false);
+	}
+
+	IEnumerator StartLoading() {
+		yield return new WaitForSeconds (1);
+		AsyncOperation async = Application.LoadLevelAsync("Main");
+		yield return async;
 	}
 }

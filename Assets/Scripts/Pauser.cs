@@ -5,6 +5,7 @@ public class Pauser : MonoBehaviour {
 
 	public GameObject PauseObject;
 	public GameObject TutorialObject;
+	public GameObject LoadingObject;
 	[HideInInspector]
 	public bool isPaused;
 
@@ -23,11 +24,18 @@ public class Pauser : MonoBehaviour {
 
 	public void GoToMainMenu() {
 		LevelManager.isReset = true;
-		Application.LoadLevel ("Menu");
+		LoadingObject.SetActive (true);
+		StartCoroutine (StartLoading ());
 	}
 
 	public void ExitTutorial() {
 		isPaused = false;
 		TutorialObject.SetActive (false);
+	}
+
+	IEnumerator StartLoading() {
+		yield return new WaitForSeconds (1);
+		AsyncOperation async = Application.LoadLevelAsync("Menu");
+		yield return async;
 	}
 }

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 
+	public GameObject loadingMenu;
+	public Pauser pauser;
 	public static bool isReset = false;
 
 	void Awake() {
@@ -11,6 +13,14 @@ public class LevelManager : MonoBehaviour {
 
 	public void ResetGame() {
 		isReset = true;
-		Application.LoadLevel (Application.loadedLevel);
+		pauser.isPaused = true;
+		loadingMenu.SetActive (true);
+		StartCoroutine (StartLoading ());
+	}
+
+	IEnumerator StartLoading() {
+		yield return new WaitForSeconds (1);
+		AsyncOperation async = Application.LoadLevelAsync("Main");
+		yield return async;
 	}
 }
