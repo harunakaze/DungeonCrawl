@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 			return;
 		}
 
-		if (TouchInput.GetSwap ("Left")) {
+		if (TouchInput.GetSwap ("Left") || Input.GetButtonDown("Left")) {
 			if(transform.position.x > 0.3f) {
 				Vector2 newPos = new Vector2(transform.position.x - 0.9f, transform.position.y);
 				lastPosition = transform.position;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (TouchInput.GetSwap ("Right")) {
+		if (TouchInput.GetSwap ("Right") || Input.GetButtonDown("Right")) {
 			if(transform.position.x < 3.9f) {
 				Vector2 newPos = new Vector2(transform.position.x + 0.9f, transform.position.y);
 				lastPosition = transform.position;
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (TouchInput.GetSwap ("Up")) {
+		if (TouchInput.GetSwap ("Up") || Input.GetButtonDown("Up")) {
 			if(transform.position.y < 5.62f) {
 				Vector2 newPos = new Vector2(transform.position.x, transform.position.y + 0.9f);
 				lastPosition = transform.position;
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (TouchInput.GetSwap ("Down")) {
+		if (TouchInput.GetSwap ("Down") || Input.GetButtonDown("Down")) {
 			if(transform.position.y > 0.67f) {
 				Vector2 newPos = new Vector2(transform.position.x, transform.position.y - 0.9f);
 				lastPosition = transform.position;
