@@ -8,6 +8,7 @@ TagManager:
   - Trap
   - ExitDoor
   - Symbols
+  - SpikeSounds
   layers:
   - Default
   - TransparentFX
