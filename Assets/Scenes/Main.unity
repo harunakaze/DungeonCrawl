@@ -252,7 +252,9 @@ MonoBehaviour:
   trapCount: 10
   exitTile: {fileID: 162872, guid: 6423de59b20c52645bcbef320433a653, type: 2}
   fogOfWar: {fileID: 107556, guid: 04efbdfef7c816e4bab592d56ed73193, type: 2}
+  player: {fileID: 449020382}
   enableFog: 1
+  playerStartPosition: {x: 0, y: 0}
 --- !u!4 &48977080
 Transform:
   m_ObjectHideFlags: 0
@@ -1679,6 +1681,10 @@ Prefab:
       propertyPath: exitButton
       value: 
       objectReference: {fileID: 48977085}
+    - target: {fileID: 137862, guid: a9fa27252889a954ba7c0da2c10c2417, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9fa27252889a954ba7c0da2c10c2417, type: 2}
   m_IsPrefabParent: 0

@@ -9,8 +9,12 @@ public class TileManager : MonoBehaviour {
 
 	public GameObject exitTile;
 	public GameObject fogOfWar;
+	public GameObject player;
 
 	public bool enableFog;
+
+	[HideInInspector]
+	public Vector2 playerStartPosition;
 
 	private int[][] tileMap = new int[][] {
 		new int[5]  { 0, 0, 0, 0, 0 },
@@ -19,14 +23,25 @@ public class TileManager : MonoBehaviour {
 		new int[5]  { 0, 0, 0, 0, 0 },
 		new int[5]  { 0, 0, 0, 0, 0 },
 		new int[5]  { 0, 0, 0, 0, 0 },
-		new int[5]  { 3, 0, 0, 0, 0 }
+		new int[5]  { 0, 0, 0, 0, 0 }
 	};
 
+	//Use (Y, X) Format to access array, sorry :p
 	//1 = Danger
 	//2 = Exit
 	//3 = Player
 
 	private Transform gelapHolder;
+	private int playerXPos;
+
+	void SetRandomPlayer() {
+		int xPos = Random.Range (0, 5);
+		int yPos = 6;
+		
+		tileMap [yPos] [xPos] = 3;
+
+		playerXPos = xPos;
+	}
 
 	void SetRandomExit() {
 		int xPos = Random.Range (0, 5);
@@ -87,6 +102,7 @@ public class TileManager : MonoBehaviour {
 	}
 
 	void SetRandom() {
+		SetRandomPlayer ();
 		SetRandomExit ();
 		SetRandomTrap ();
 	}
@@ -101,13 +117,16 @@ public class TileManager : MonoBehaviour {
 			new int[5]  { 0, 0, 0, 0, 0 },
 			new int[5]  { 0, 0, 0, 0, 0 },
 			new int[5]  { 0, 0, 0, 0, 0 },
-			new int[5]  { 1, 0, 0, 0, 0 }
+			new int[5]  { 0, 0, 0, 0, 0 }
 		};
 
 		Vector2 titik;
-		titik.x = 0;
+		titik.x = playerXPos;
 		titik.y = 6;
 		searchStack.Push (titik);
+
+		//Mark player
+		checkMap[(int)titik.y][(int)titik.x] = 1;
 
 		while (searchStack.Count != 0) {
 			Vector2 curTitik = (Vector2)searchStack.Pop();
@@ -151,7 +170,7 @@ public class TileManager : MonoBehaviour {
 			new int[5]  { 0, 0, 0, 0, 0 },
 			new int[5]  { 0, 0, 0, 0, 0 },
 			new int[5]  { 0, 0, 0, 0, 0 },
-			new int[5]  { 3, 0, 0, 0, 0 }
+			new int[5]  { 0, 0, 0, 0, 0 }
 		};
 	}
 
@@ -187,14 +206,25 @@ public class TileManager : MonoBehaviour {
 		}
 	}
 
+	void PlacePlayer() {
+		const float playerIncrement = 0.9f;
+		const float playerOffset = 0.3f;
+		float xPos = (playerXPos * playerIncrement) + playerOffset;
+
+		playerStartPosition = new Vector2 (xPos, 0.67f);
+
+		player.transform.position = playerStartPosition;
+		player.SetActive (true);
+	}
+
 	void Start() {
 
 		do {
 			SetRandom ();
 		} while (!CheckDFS());
 
+		PlacePlayer ();
 		LayTile ();
-
 		SetFogOfWar ();
 	}
 }

@@ -93,9 +93,9 @@ public class PlayerController : MonoBehaviour {
 	public void ResetCondition() {
 		tileManager.SetFogOfWar ();
 		
-		Vector2 startPosition = new Vector2 (0.3f, 0.67f);
+		//Vector2 startPosition = new Vector2 (0.3f, 0.67f);
 		
-		transform.position = startPosition;
+		transform.position = tileManager.playerStartPosition;
 
 		isDead = false;
 
