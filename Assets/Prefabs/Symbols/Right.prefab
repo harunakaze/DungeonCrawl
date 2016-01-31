@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2977eb3daf7463f40ab668451c96f441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbols: {fileID: 116096, guid: 67e6dd33b01b6694db65d3c2d347c27c, type: 2}
+  symbols: {fileID: 105962, guid: 64736e399e34a8f4bb3762da6a8a11d4, type: 2}
+  baloon: {fileID: 174238, guid: 8191bb82534612f4b9ca0e3051eeff86, type: 2}
   playerPos: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -145,6 +146,14 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 3583830f450a43842a42bbdbffc74df8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: symbols
+      value: 
+      objectReference: {fileID: 105962, guid: 64736e399e34a8f4bb3762da6a8a11d4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: baloon
+      value: 
+      objectReference: {fileID: 174238, guid: 8191bb82534612f4b9ca0e3051eeff86, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 108946}

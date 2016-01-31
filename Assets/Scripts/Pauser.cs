@@ -10,6 +10,10 @@ public class Pauser : MonoBehaviour {
 
 	void Start() {
 		isPaused = true;
+
+		if (LevelManager.isReset) {
+			ExitTutorial();
+		}
 	}
 
 	public void TogglePause() {
@@ -18,6 +22,7 @@ public class Pauser : MonoBehaviour {
 	}
 
 	public void GoToMainMenu() {
+		LevelManager.isReset = true;
 		Application.LoadLevel ("Menu");
 	}
 

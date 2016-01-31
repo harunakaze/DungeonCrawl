@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
 	public GameObject deadButton;
 	public GameObject victory;
 
+	public SoulsManager soulsManager;
+
 	public Pauser pauser;
 	private bool isDead = false;
 	private bool isWin = false;
@@ -113,6 +115,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	IEnumerator DeadStart() {
+		soulsManager.PlayerDie ();
+
 		isDead = true;
 
 		Vector2 deadPos = new Vector2(transform.position.x, transform.position.y - 0.334f);

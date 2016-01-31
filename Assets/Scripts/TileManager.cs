@@ -10,6 +10,8 @@ public class TileManager : MonoBehaviour {
 	public GameObject exitTile;
 	public GameObject fogOfWar;
 
+	public bool enableFog;
+
 	private int[][] tileMap = new int[][] {
 		new int[5]  { 0, 0, 0, 0, 0 },
 		new int[5]  { 0, 0, 0, 0, 0 },
@@ -154,6 +156,9 @@ public class TileManager : MonoBehaviour {
 	}
 
 	public void SetFogOfWar() {
+		if (!enableFog)
+			return;
+
 		if (gelapHolder != null)
 			Destroy (gelapHolder.gameObject);
 
