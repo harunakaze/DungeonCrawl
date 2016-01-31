@@ -8,7 +8,7 @@ public class Spiker : MonoBehaviour {
 
 	void Start() {
 		animator = GetComponent<Animator> ();
-		audioSource = GameObject.FindGameObjectWithTag ("SpikeSounds").GetComponent<AudioSource> ();;
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
