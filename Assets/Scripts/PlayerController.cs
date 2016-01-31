@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (other.CompareTag ("ExitDoor")) {
-			WinStart();
+			StartCoroutine(WinStart());
 		}
 	}
 
@@ -131,9 +131,9 @@ public class PlayerController : MonoBehaviour {
 		Dead();
 	}
 
-	void WinStart() {
-		victory.SetActive (true);
-
+	IEnumerator WinStart() {
 		isWin = true;
+		yield return new WaitForSeconds(2.32f);
+		victory.SetActive (true);
 	}
 }
