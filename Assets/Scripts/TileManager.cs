@@ -101,7 +101,7 @@ public class TileManager : MonoBehaviour {
 		}
 	}
 
-	void SetRandom() {
+	void GenerateMap() {
 		SetRandomPlayer ();
 		SetRandomExit ();
 		SetRandomTrap ();
@@ -219,8 +219,9 @@ public class TileManager : MonoBehaviour {
 
 	void Start() {
 
+		//Keep generating map until solveable
 		do {
-			SetRandom ();
+			GenerateMap ();
 		} while (!CheckDFS());
 
 		PlacePlayer ();
