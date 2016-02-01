@@ -5,9 +5,11 @@ public class MenuManager : MonoBehaviour {
 
 	public GameObject splashObject;
 	public GameObject loadingImage;
+	public AudioSource bgmSource;
 
 	void Start() {
 		if (!LevelManager.isReset) {
+			splashObject.SetActive (true);
 			StartCoroutine (HideSplash ());
 		} else {
 			splashObject.SetActive (false);
@@ -19,6 +21,7 @@ public class MenuManager : MonoBehaviour {
 	public void GoToGame() {
 		LevelManager.isReset = false;
 		loadingImage.SetActive (true);
+		bgmSource.mute = true;
 		StartCoroutine (StartLoading ());
 	}
 

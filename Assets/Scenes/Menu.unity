@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splashObject: {fileID: 2057257455}
   loadingImage: {fileID: 1894991959}
+  bgmSource: {fileID: 1734628803}
 --- !u!4 &52112877
 Transform:
   m_ObjectHideFlags: 0
@@ -1901,7 +1902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2057257456
 MonoBehaviour:
   m_ObjectHideFlags: 0
