@@ -255,7 +255,7 @@ MonoBehaviour:
   fogOfWar: {fileID: 107556, guid: 04efbdfef7c816e4bab592d56ed73193, type: 2}
   player: {fileID: 449020382}
   trapHolder: {fileID: 1190971302}
-  enableFog: 1
+  enableFog: 0
   playerStartPosition: {x: 0, y: 0}
 --- !u!4 &48977080
 Transform:
@@ -2827,7 +2827,7 @@ GameObject:
   - 114: {fileID: 1400326121}
   m_Layer: 0
   m_Name: BGM Manager
-  m_TagString: Untagged
+  m_TagString: BGMManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
