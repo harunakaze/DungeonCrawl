@@ -255,7 +255,7 @@ MonoBehaviour:
   fogOfWar: {fileID: 107556, guid: 04efbdfef7c816e4bab592d56ed73193, type: 2}
   player: {fileID: 449020382}
   trapHolder: {fileID: 1190971302}
-  enableFog: 0
+  enableFog: 1
   playerStartPosition: {x: 0, y: 0}
 --- !u!4 &48977080
 Transform:
@@ -321,7 +321,7 @@ MonoBehaviour:
   pauseObject: {fileID: 500931491}
   tutorialObject: {fileID: 1220308057}
   loadingObject: {fileID: 1943379925}
-  enableTutorial: 0
+  enableTutorial: 1
   isPaused: 0
   isTutorial: 0
 --- !u!114 &48977084
@@ -2860,7 +2860,7 @@ AudioSource:
   Loop: 1
   Mute: 0
   Spatialize: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
