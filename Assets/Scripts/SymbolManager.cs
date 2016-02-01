@@ -10,7 +10,8 @@ public class SymbolManager : MonoBehaviour {
 	public GameObject down;
 	public GameObject right;
 
-	public GameObject deadButton;
+	public GameObject leaveMessageDialogObject;
+	public GameObject showMessageObject;
 
 	public Image selectedImages;
 	public Sprite upSprite;
@@ -62,7 +63,7 @@ public class SymbolManager : MonoBehaviour {
 
 		instance.transform.SetParent (symbolsHolder);
 
-		deadButton.SetActive (false);
+		leaveMessageDialogObject.SetActive (false);
 		pC.ResetCondition ();
 		ResetUI ();
 	}
@@ -92,5 +93,10 @@ public class SymbolManager : MonoBehaviour {
 		} else if (selectedSymbols == 4) { //right
 			selectedImages.sprite = rightSprite;
 		}
+	}
+
+	public void ToggleLeaveMessage() {
+		leaveMessageDialogObject.SetActive (!leaveMessageDialogObject.activeInHierarchy);
+		showMessageObject.SetActive(!showMessageObject.activeInHierarchy);
 	}
 }
