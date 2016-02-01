@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebcbc75637fe3a4899ef94b94fb96f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pC: {fileID: 449020385}
+  playerController: {fileID: 449020385}
   left: {fileID: 107584, guid: efbdab267504f30489b82613bf4a7e1c, type: 2}
   up: {fileID: 151208, guid: b6589e4c9d3768948ab71f7855bd777d, type: 2}
   down: {fileID: 178818, guid: 15e28f523d53f254e903f230df7344ba, type: 2}
@@ -1863,6 +1863,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11420240, guid: a9fa27252889a954ba7c0da2c10c2417, type: 2}
+      propertyPath: lastPlaceSouls
+      value: 
+      objectReference: {fileID: 146462, guid: 34e108f4ec1aaa14096f89f523e42363, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9fa27252889a954ba7c0da2c10c2417, type: 2}
   m_IsPrefabParent: 0

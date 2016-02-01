@@ -11,11 +11,15 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject deadButton;
 	public GameObject victory;
+	public GameObject lastPlaceSouls;
 
 	public SoulsManager soulsManager;
 
 	public Pauser pauser;
 	public ExitButton exitButton;
+
+	[HideInInspector]
+	public GameObject lastPlaceSoulsInstance;
 
 	private bool isDead = false;
 	private bool isWin = false;
@@ -116,8 +120,17 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void PutLastSouls() {
+		lastPlaceSoulsInstance = Instantiate (lastPlaceSouls, lastPosition, Quaternion.identity) as GameObject;
+	}
+
+	public void DeleteLastSouls() {
+		Destroy (lastPlaceSoulsInstance);
+	}
+
 	IEnumerator DeadStart() {
 		soulsManager.PlayerDie ();
+		PutLastSouls ();
 
 		isDead = true;
 

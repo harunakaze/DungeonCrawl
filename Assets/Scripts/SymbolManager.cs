@@ -4,7 +4,7 @@ using System.Collections;
 
 public class SymbolManager : MonoBehaviour {
 
-	public PlayerController pC;
+	public PlayerController playerController;
 	public GameObject left;
 	public GameObject up;
 	public GameObject down;
@@ -44,7 +44,7 @@ public class SymbolManager : MonoBehaviour {
 			return;
 
 
-		lastPos = pC.lastPosition;
+		lastPos = playerController.lastPosition;
 
 		RemoveOldSymbols ();
 
@@ -64,7 +64,8 @@ public class SymbolManager : MonoBehaviour {
 		instance.transform.SetParent (symbolsHolder);
 
 		leaveMessageDialogObject.SetActive (false);
-		pC.ResetCondition ();
+		playerController.DeleteLastSouls ();
+		playerController.ResetCondition ();
 		ResetUI ();
 	}
 
