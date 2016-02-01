@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour {
 
 	private AudioSource audioSource;
 
+	private float safeMoveOffset = 0.45f;
+
 	void Start() {
 		animator = GetComponent<Animator> ();
 		audioSource = GetComponent<AudioSource> ();
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (TouchInput.GetSwap ("Left") || Input.GetButtonDown("Left")) {
-			if(transform.position.x > 0.3f) {
+			if(transform.position.x > 0.3f + safeMoveOffset) {
 				Vector2 newPos = new Vector2(transform.position.x - 0.9f, transform.position.y);
 				lastPosition = transform.position;
 				transform.position = newPos;
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (TouchInput.GetSwap ("Right") || Input.GetButtonDown("Right")) {
-			if(transform.position.x < 3.9f) {
+			if(transform.position.x < 3.9f - safeMoveOffset) {
 				Vector2 newPos = new Vector2(transform.position.x + 0.9f, transform.position.y);
 				lastPosition = transform.position;
 				transform.position = newPos;
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (TouchInput.GetSwap ("Up") || Input.GetButtonDown("Up")) {
-			if(transform.position.y < 5.62f) {
+			if(transform.position.y < 6.07f - safeMoveOffset) { //6.07f player pos on top
 				Vector2 newPos = new Vector2(transform.position.x, transform.position.y + 0.9f);
 				lastPosition = transform.position;
 				transform.position = newPos;
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (TouchInput.GetSwap ("Down") || Input.GetButtonDown("Down")) {
-			if(transform.position.y > 0.67f) {
+			if(transform.position.y > 0.67f + safeMoveOffset) {
 				Vector2 newPos = new Vector2(transform.position.x, transform.position.y - 0.9f);
 				lastPosition = transform.position;
 				transform.position = newPos;
