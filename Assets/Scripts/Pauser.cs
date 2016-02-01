@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Pauser : MonoBehaviour {
 
-	public GameObject PauseObject;
-	public GameObject TutorialObject;
-	public GameObject LoadingObject;
+	public GameObject pauseObject;
+	public GameObject tutorialObject;
+	public GameObject loadingObject;
 	public bool enableTutorial = true;
 	[HideInInspector]
 	public bool isPaused;
@@ -15,6 +15,11 @@ public class Pauser : MonoBehaviour {
 	void Start() {
 		isPaused = true;
 
+		//So you not forget :v
+		if (enableTutorial) {
+			tutorialObject.SetActive(true);
+		}
+
 		if (LevelManager.isReset || !enableTutorial) {
 			ExitTutorial();
 		}
@@ -23,8 +28,8 @@ public class Pauser : MonoBehaviour {
 	}
 
 	public void TogglePause() {
-		PauseObject.SetActive (!PauseObject.activeInHierarchy);
-		isPaused = PauseObject.activeInHierarchy;
+		pauseObject.SetActive (!pauseObject.activeInHierarchy);
+		isPaused = pauseObject.activeInHierarchy;
 
 		if (isPaused)
 			Time.timeScale = 0;
@@ -35,14 +40,14 @@ public class Pauser : MonoBehaviour {
 	public void GoToMainMenu() {
 		Time.timeScale = 1;
 		LevelManager.isReset = true;
-		LoadingObject.SetActive (true);
+		loadingObject.SetActive (true);
 		StartCoroutine (StartLoading ());
 	}
 
 	public void ExitTutorial() {
 		isPaused = false;
 		isTutorial = false;
-		TutorialObject.SetActive (false);
+		tutorialObject.SetActive (false);
 	}
 
 	IEnumerator StartLoading() {

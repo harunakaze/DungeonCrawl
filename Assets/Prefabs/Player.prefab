@@ -13,7 +13,7 @@ GameObject:
   - 61: {fileID: 6194980}
   - 114: {fileID: 11420240}
   m_Layer: 0
-  m_Name: character_idle
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,11 @@ MonoBehaviour:
   lastPosition: {x: 0, y: 0, z: 0}
   deadButton: {fileID: 0}
   victory: {fileID: 0}
+  lastPlaceSouls: {fileID: 0}
+  soulsManager: {fileID: 0}
   pauser: {fileID: 0}
+  exitButton: {fileID: 0}
+  lastPlaceSoulsInstance: {fileID: 0}
 --- !u!212 &21256742
 SpriteRenderer:
   m_ObjectHideFlags: 1

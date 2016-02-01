@@ -7,10 +7,6 @@ public class LevelManager : MonoBehaviour {
 	public Pauser pauser;
 	public static bool isReset = false;
 
-	void Awake() {
-		DontDestroyOnLoad (transform.gameObject);
-	}
-
 	public void ResetGame() {
 		isReset = true;
 		pauser.isPaused = true;

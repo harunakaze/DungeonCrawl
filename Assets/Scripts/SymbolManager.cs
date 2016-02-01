@@ -4,24 +4,27 @@ using System.Collections;
 
 public class SymbolManager : MonoBehaviour {
 
-	public PlayerController pC;
+	public PlayerController playerController;
 	public GameObject left;
 	public GameObject up;
 	public GameObject down;
 	public GameObject right;
 
-	public GameObject deadButton;
+	public GameObject leaveMessageDialogObject;
+	public GameObject showMessageObject;
 
 	public Image selectedImages;
 	public Sprite upSprite;
 	public Sprite downSprite;
 	public Sprite leftSprite;
 	public Sprite rightSprite;
+
+	public Transform symbolsHolder;
 	
 	private Vector3 lastPos;
 
 	private int selectedSymbols = 0; //Not selecting
-
+	
 	void RemoveOldSymbols() {
 		Vector2 fixedPos = new Vector2 (lastPos.x, lastPos.y - 0.45f);
 		Collider2D[] oldSymbols = Physics2D.OverlapPointAll(fixedPos);
@@ -41,24 +44,28 @@ public class SymbolManager : MonoBehaviour {
 			return;
 
 
-		lastPos = pC.lastPosition;
+		lastPos = playerController.lastPosition;
 
 		RemoveOldSymbols ();
 
 		Vector2 fixedPos = new Vector2 (lastPos.x, lastPos.y - 0.45f);
+		GameObject instance;
 
 		if (selectedSymbols == 1) { // left
-			Instantiate(left, fixedPos, Quaternion.identity);
+			instance = Instantiate(left, fixedPos, Quaternion.identity) as GameObject;
 		} else if (selectedSymbols == 2) { //up
-			Instantiate(up, fixedPos, Quaternion.identity);
+			instance = Instantiate(up, fixedPos, Quaternion.identity) as GameObject;
 		} else if (selectedSymbols == 3) { //down
-			Instantiate(down, fixedPos, Quaternion.identity);
-		} else if (selectedSymbols == 4) { //right
-			Instantiate(right, fixedPos, Quaternion.identity);
+			instance = Instantiate(down, fixedPos, Quaternion.identity) as GameObject;
+		} else { // if (selectedSymbols == 4) { //right
+			instance = Instantiate(right, fixedPos, Quaternion.identity) as GameObject;
 		}
 
-		deadButton.SetActive (false);
-		pC.ResetCondition ();
+		instance.transform.SetParent (symbolsHolder);
+
+		leaveMessageDialogObject.SetActive (false);
+		playerController.DeleteLastSouls ();
+		playerController.ResetCondition ();
 		ResetUI ();
 	}
 
@@ -87,5 +94,10 @@ public class SymbolManager : MonoBehaviour {
 		} else if (selectedSymbols == 4) { //right
 			selectedImages.sprite = rightSprite;
 		}
+	}
+
+	public void ToggleLeaveMessage() {
+		leaveMessageDialogObject.SetActive (!leaveMessageDialogObject.activeInHierarchy);
+		showMessageObject.SetActive(!showMessageObject.activeInHierarchy);
 	}
 }

@@ -60,6 +60,9 @@ TagManager:
   - name: Player
     uniqueID: 546827847
     locked: 0
+  - name: LastPlayerSouls
+    uniqueID: 2235967785
+    locked: 0
   - name: Baloon
     uniqueID: 3542737647
     locked: 0
