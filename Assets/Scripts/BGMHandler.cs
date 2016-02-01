@@ -2,17 +2,15 @@
 using System.Collections;
 
 public class BGMHandler : MonoBehaviour {
+	
+	public static BGMHandler bgmHandler;
 
-	void Start() {
-		GameObject[] oldBGMManager = GameObject.FindGameObjectsWithTag ("BGMManager");
-
-		if (oldBGMManager.Length > 1)
-			Destroy (gameObject);
-		else
+	void Awake() {
+		if (bgmHandler == null) {
 			DontDestroyOnLoad (gameObject);
-	}
-
-	public void DestroySounds() {
-		Destroy (gameObject);
+			bgmHandler = this;
+		} else if (bgmHandler != this) {
+			Destroy(gameObject);
+		}
 	}
 }

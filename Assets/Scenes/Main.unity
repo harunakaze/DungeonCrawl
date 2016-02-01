@@ -231,6 +231,7 @@ GameObject:
   - 114: {fileID: 48977084}
   - 114: {fileID: 48977085}
   - 114: {fileID: 48977086}
+  - 114: {fileID: 48977087}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -364,6 +365,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog: {fileID: 600511575}
   showButton: {fileID: 1191718533}
+--- !u!114 &48977087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 48977078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578b5b8d53d98c54e9e3493b26ce12f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &66188694
 Prefab:
   m_ObjectHideFlags: 0
@@ -2033,8 +2045,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1400326121}
-        m_MethodName: DestroySounds
+      - m_Target: {fileID: 48977087}
+        m_MethodName: DestroyBGM
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2827,7 +2839,7 @@ GameObject:
   - 114: {fileID: 1400326121}
   m_Layer: 0
   m_Name: BGM Manager
-  m_TagString: BGMManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4042,8 +4054,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1400326121}
-        m_MethodName: DestroySounds
+      - m_Target: {fileID: 48977087}
+        m_MethodName: DestroyBGM
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

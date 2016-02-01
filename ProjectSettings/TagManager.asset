@@ -8,7 +8,6 @@ TagManager:
   - Trap
   - ExitDoor
   - Symbols
-  - BGMManager
   layers:
   - Default
   - TransparentFX
