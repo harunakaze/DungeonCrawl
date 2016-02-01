@@ -11,6 +11,8 @@ public class TileManager : MonoBehaviour {
 	public GameObject fogOfWar;
 	public GameObject player;
 
+	public Transform trapHolder;
+
 	public bool enableFog;
 
 	[HideInInspector]
@@ -86,7 +88,8 @@ public class TileManager : MonoBehaviour {
 		for (int i = 0; i < 5; i++) {
 			for(int j = 6; j >= 0; j--) {
 				if(tileMap[j][i] == 1) { //Trap Tile
-					Instantiate(trapTile, new Vector3(curX, curY), Quaternion.identity);
+					GameObject instance = Instantiate(trapTile, new Vector3(curX, curY), Quaternion.identity) as GameObject;
+					instance.transform.SetParent(trapHolder);
 				}
 				else if(tileMap[j][i] == 2) { //Exit Tile
 					Instantiate(exitTile, new Vector3(curX, curY), Quaternion.identity);
